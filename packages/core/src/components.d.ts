@@ -589,7 +589,6 @@ declare global {
   namespace JSXElements {
       export interface IonDatetimeAttributes extends HTMLAttributes {
         
-          pickerCtrl?: any,
           disabled?: boolean | "true" | "false",
           min?: any,
           max?: any,
@@ -607,8 +606,7 @@ declare global {
           dayNames?: any,
           dayShortNames?: any,
           pickerOptions?: any,
-          placeholder?: any,
-          value?: any
+          placeholder?: any
       }
   }
 }
@@ -694,33 +692,6 @@ declare global {
           close?: any,
           href?: any,
           disabled?: boolean | "true" | "false"
-      }
-  }
-}
-
-import { Fixed as IonFixed } from './components/fixed/fixed';
-
-interface HTMLIonFixedElement extends IonFixed, HTMLElement {
-}
-declare var HTMLIonFixedElement: {
-  prototype: HTMLIonFixedElement;
-  new (): HTMLIonFixedElement;
-};
-declare global {
-  interface HTMLElementTagNameMap {
-      "ion-fixed": HTMLIonFixedElement;
-  }
-  interface ElementTagNameMap {
-      "ion-fixed": HTMLIonFixedElement;
-  }
-  namespace JSX {
-      interface IntrinsicElements {
-          "ion-fixed": JSXElements.IonFixedAttributes;
-      }
-  }
-  namespace JSXElements {
-      export interface IonFixedAttributes extends HTMLAttributes {
-        
       }
   }
 }

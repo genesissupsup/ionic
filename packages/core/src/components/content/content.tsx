@@ -82,16 +82,14 @@ export class Content {
     const props: any = {};
     const scrollStyle: any = {};
 
-    const pageChildren: HTMLElement[] = getParentElement(this.el).children;
-    const headerHeight = getToolbarHeight('ION-HEADER', pageChildren, this.mode, '44px', '56px');
-    const footerHeight = getToolbarHeight('ION-FOOTER', pageChildren, this.mode, '50px', '48px');
-
     if (this.fullscreen) {
+      const pageChildren: HTMLElement[] = getParentElement(this.el).children;
+      const headerHeight = getToolbarHeight('ION-HEADER', pageChildren, this.mode, '44px', '56px');
+      const footerHeight = getToolbarHeight('ION-FOOTER', pageChildren, this.mode, '50px', '48px');
       scrollStyle.paddingTop = headerHeight;
       scrollStyle.paddingBottom = footerHeight;
-    } else {
-      scrollStyle.marginTop = headerHeight;
-      scrollStyle.marginBottom = footerHeight;
+      scrollStyle.top = '-' + headerHeight;
+      scrollStyle.bottom = '-' + footerHeight;
     }
 
     if (this.ionScrollStart) {
@@ -113,10 +111,11 @@ export class Content {
       'statusbar-padding': this.config.getBoolean('statusbarPadding')
     };
 
-    return (
+    return [
       <ion-scroll style={scrollStyle} props={props} class={scrollClasses}>
         <slot></slot>
-      </ion-scroll>
-    );
+      </ion-scroll>,
+      <slot name='fixed'></slot>
+    ];
   }
 }
